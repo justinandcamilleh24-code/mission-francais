@@ -1,8 +1,77 @@
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-<title>Index Page</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Mission Français · RPG</title>
+
+<style>
+body{margin:0;font-family:-apple-system,Arial;background:#0b1020;color:#fff;padding:16px}
+.card{background:#111936;padding:16px;border-radius:16px;margin-bottom:12px}
+button{padding:10px 12px;border-radius:12px;border:none;margin:4px;font-weight:700}
+.primary{background:#7cf6d6;color:#000}
+textarea{width:100%;padding:10px;border-radius:12px;background:#000;color:#fff}
+.small{color:#aaa;font-size:12px}
+</style>
 </head>
+
 <body>
-<h1>Welcome to the Index Page</h1>
+
+<div class="card">
+<h2>🎭 Café Date</h2>
+<p><b>Bonsoir. On s’assoit ici ?</b></p>
+<p class="small">Good evening. Shall we sit here?</p>
+
+<button class="primary" onclick="speak()">🔊 Hear it</button>
+
+<textarea id="attempt" placeholder="Say it or type it..."></textarea>
+
+<button class="primary" onclick="check()">Check Progress</button>
+
+<p id="result"></p>
+</div>
+
+<div class="card">
+<h2>🎲 Game Night</h2>
+<p><b>On joue ? C’est à toi.</b></p>
+<p class="small">Wanna play? Your turn.</p>
+<button class="primary" onclick="speak2()">🔊 Hear it</button>
+</div>
+
+<div class="card">
+<h2>🍳 Kitchen Boss</h2>
+<p><b>Je prépare un pain de viande et une purée maison.</b></p>
+<p class="small">I make meatloaf and homemade mash.</p>
+<button class="primary" onclick="speak3()">🔊 Hear it</button>
+</div>
+
+<script>
+function speak(){
+ let u=new SpeechSynthesisUtterance("Bonsoir. On s’assoit ici ?");
+ u.lang="fr-FR";
+ speechSynthesis.speak(u);
+}
+function speak2(){
+ let u=new SpeechSynthesisUtterance("On joue ? C’est à toi.");
+ u.lang="fr-FR";
+ speechSynthesis.speak(u);
+}
+function speak3(){
+ let u=new SpeechSynthesisUtterance("Je prépare un pain de viande et une purée maison.");
+ u.lang="fr-FR";
+ speechSynthesis.speak(u);
+}
+
+function check(){
+ let text=document.getElementById("attempt").value.toLowerCase();
+ let score=0;
+ if(text.includes("bonsoir")) score++;
+ if(text.includes("assoit")) score++;
+ if(text.includes("ici")) score++;
+
+ document.getElementById("result").innerText="Score: "+score+"/3 ⭐ (Progress counts!)";
+}
+</script>
+
 </body>
 </html>
